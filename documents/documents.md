@@ -8,8 +8,6 @@ $userAdm -> Usuario Admin
 $userLoc -> Usuario local
 $userExt -> Usuario externo
 $userBuscar -> metodo de busqueda usuario
-$productoBuscar -> metodo busqueda producto
 $userModel -> modelo Usuario
-$userController -> controller Usuario
 $senha -> senha Usuario
 $name -> nome Usuario
