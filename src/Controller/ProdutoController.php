@@ -1,6 +1,6 @@
 <?php
 
-class UsuarioController{
+class ProdutoController{
     
     public function inserir(){
         

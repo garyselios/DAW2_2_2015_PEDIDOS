@@ -1,6 +1,6 @@
 <?php
 
-class UsuarioController{
+class ClienteController{
     
     public function inserir(){
         

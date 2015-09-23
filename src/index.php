@@ -1,8 +1,36 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+class ClassAutoloader {
 
+    public function __construct() {
+        spl_autoload_register(array($this, 'loader'));
+    }
+
+    private function loader($nomeClasse) {
+        if(file_exists('Controller/' . $nomeClasse . '.php')){
+            $pasta = 'Controller/';
+        } elseif(file_exists('Model/' . $nomeClasse . '.php')) {
+            $pasta = 'Model/';
+        }
+        
+         include_once $pasta . $nomeClasse . '.php';
+    }
+
+}
+
+new ClassAutoloader();
+
+if (isset($_GET['controller'])) {
+    $controller = $_GET['controller'];
+} else {
+    $controller = 'SiteController';
+}
+
+if (isset($_GET['action'])) {
+    $action = $_GET['action'];
+} else {
+    $action = 'index';
+}
+
+$controller = new $controller();
+$controller->$action();
