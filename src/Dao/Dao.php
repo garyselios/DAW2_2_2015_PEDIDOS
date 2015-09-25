@@ -28,6 +28,7 @@ class Dao{
             if($parameters != null){
                 foreach ($parameters as $key => $value){
                     $comand->bindValue($key, $value);
+                    var_dump($comand);
                 }
             }
             $comand ->execute();

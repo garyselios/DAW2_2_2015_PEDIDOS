@@ -13,21 +13,21 @@ class ClassAutoloader {
             $pasta = 'Model/';
         }
         
-         include_once $pasta . $nomeClasse . '.php';
+        include_once $pasta . $nomeClasse . '.php';
     }
 
 }
 
 new ClassAutoloader();
 
-if (isset($_GET['controller'])) {
-    $controller = $_GET['controller'];
+if (isset($_GET['Controller'])) {
+    $controller = $_GET['Controller'];
 } else {
     $controller = 'SiteController';
 }
 
-if (isset($_GET['action'])) {
-    $action = $_GET['action'];
+if (isset($_GET['Action'])) {
+    $action = $_GET['Action'];
 } else {
     $action = 'index';
 }
