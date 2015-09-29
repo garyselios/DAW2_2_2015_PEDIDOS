@@ -11,6 +11,8 @@ class ClassAutoloader {
             $pasta = 'Controller/';
         } elseif(file_exists('Model/' . $nomeClasse . '.php')) {
             $pasta = 'Model/';
+        } elseif(file_exists('Dao/' . $nomeClasse . '.php')) {
+            $pasta = 'Dao/';
         }
         
         include_once $pasta . $nomeClasse . '.php';

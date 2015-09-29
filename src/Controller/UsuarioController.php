@@ -13,8 +13,8 @@ class UsuarioController{
             $usuarioModel->setEmail($_POST['email']);
             $usuarioModel->setSenha($_POST['senha']);
             $usuarioModel->setAdmin($_POST['admin']);
-            var_dump($usuarioModel->insert());
-            if($usuarioModel->insert()){
+            //echo 'eu'.var_dump($usuarioModel->insertarUsuario());
+            if($usuarioModel->insertarUsuario()){
                 $msg = "ok";
             } else{
                 $msg = "problem";

@@ -1,8 +1,6 @@
 <?php
 
-include_once 'Dao/Dao.php';
-
-class UsuarioModel extends Dao{
+class UsuarioModel {
     
     private $id;
     private $nome;
@@ -10,30 +8,6 @@ class UsuarioModel extends Dao{
     private $email;
     private $senha;
     private $admin;
-    
-    public function getId(){
-        return $this->id;
-    }
-    
-    public function getNome(){
-        return $this->nome;
-    }
-    
-    public function getUsername(){
-        return $this->username;
-    }
-    
-    public function getEmail(){
-        return $this->email;
-    }
-    
-    public function getSenha(){
-        return $this->senha;
-    }
-    
-    public function getAdmin(){
-        return $this->admin;
-    }
     
     public function setId($id) {
         $this->id = $id;
@@ -64,10 +38,31 @@ class UsuarioModel extends Dao{
         return $this;
     }
     
-    public function insert(){
-        
-        $sqlCommand = "INSERT INTO usuario (nome,username,email,senha,senha_admin)"
-                . " VALUES (:nome,:username,:email,:senha,:admin)";
+    public function getId() {
+        return $this->id;
+    }
+    
+    public function getNome() {
+        return $this->nome;
+    }
+    
+    public function getUsername() {
+        return $this->username;
+    }
+    
+    public function getEmail() {
+        return $this->email;
+    }
+    
+    public function getSenha() {
+        return $this->senha;
+    }
+    
+    public function getAdmin() {
+        return $this->admin;
+    }
+    
+    public function insertarUsuario() {  
         
         $paramters = array();
         $paramters [':nome'] = $this->getNome();
@@ -76,8 +71,9 @@ class UsuarioModel extends Dao{
         $paramters [':senha'] = $this->getSenha();
         $paramters [':admin'] = $this->getAdmin();
         
-        $dao = new Dao();
-        return $dao->executeCommand($sqlCommand,$paramters);
+        $objUsuarioDao = new UsuarioDao();
+        
+        return $objUsuarioDao->insertUsuario($paramters);
     }
     
 }

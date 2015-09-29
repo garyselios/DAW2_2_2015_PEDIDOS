@@ -22,6 +22,14 @@ class Dao{
         
         try{
                     
+            $this->connection = new PDO(
+                        "mysql:host={$this->host};dbname={$this->dbname};",
+                        $this->usuario,
+                        $this->senha);         
+                        
+            $this->connection->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+            
+            
             $this->connection ->beginTransaction();
             $comand = $this->connection ->prepare($sqlCommand);
 
@@ -52,6 +60,14 @@ class Dao{
     protected function executeQuery($sqlCommand, $parameters) {
         
         try {
+            
+            $this->connection = new PDO(
+                        "mysql:host={$this->host};dbname={$this->dbname};",
+                        $this->usuario,
+                        $this->senha);         
+                        
+            $this->connection->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+            
             $this->connection ->beginTransaction();
             $command = $this->connection->prepare($sqlCommand);
 
