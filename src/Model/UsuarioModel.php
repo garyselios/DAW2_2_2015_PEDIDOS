@@ -66,11 +66,15 @@ class UsuarioModel extends Dao{
     
     public function insert(){
         
-        $sqlCommand = "INSERT INTO usuario_admin (nome)"
-                . " VALUES (:nome)";
+        $sqlCommand = "INSERT INTO usuario (nome,username,email,senha,senha_admin)"
+                . " VALUES (:nome,:username,:email,:senha,:admin)";
         
         $paramters = array();
         $paramters [':nome'] = $this->getNome();
+        $paramters [':username'] = $this->getUsername();
+        $paramters [':email'] = $this->getEmail();
+        $paramters [':senha'] = $this->getSenha();
+        $paramters [':admin'] = $this->getAdmin();
         
         $dao = new Dao();
         return $dao->executeCommand($sqlCommand,$paramters);

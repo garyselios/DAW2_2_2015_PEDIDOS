@@ -4,18 +4,23 @@ class UsuarioController{
     
     public function inserir(){
         
-        if(isset($_GET['Nome'])){
+        if(isset($_POST['nome'])){
 
             $usuarioModel = new UsuarioModel();
 
-            $usuarioModel->setNome($_GET['Nome']);
-
+            $usuarioModel->setNome($_POST['nome']);
+            $usuarioModel->setUsername($_POST['username']);
+            $usuarioModel->setEmail($_POST['email']);
+            $usuarioModel->setSenha($_POST['senha']);
+            $usuarioModel->setAdmin($_POST['admin']);
+            var_dump($usuarioModel->insert());
             if($usuarioModel->insert()){
-                echo "ok";
+                $msg = "ok";
             } else{
-                echo "problem";
+                $msg = "problem";
             }
-        }
+        }  
+        include 'View/Local/RegistroUsuario.php';
     }
     
     public function deletar(){

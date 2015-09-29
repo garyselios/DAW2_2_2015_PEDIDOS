@@ -4,7 +4,7 @@ class Dao{
     
     protected $connection;
     private $host = 'localhost';
-    private $dbname = 'ifBurguer';
+    private $dbname = 'if_burguer';
     private $usuario = 'root';
     private $senha = 'mysql';
        
@@ -27,9 +27,9 @@ class Dao{
 
             if($parameters != null){
                 foreach ($parameters as $key => $value){
-                    $comand->bindValue($key, $value);
-                    var_dump($comand);
+                    $comand->bindValue($key, $value);      
                 }
+            var_dump($parameters);
             }
             $comand ->execute();
             $this->connection->commit();
