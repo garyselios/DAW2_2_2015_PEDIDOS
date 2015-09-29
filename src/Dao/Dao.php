@@ -7,21 +7,18 @@ class Dao{
     private $dbname = 'if_burguer';
     private $usuario = 'root';
     private $senha = 'mysql';
-       
-    function __construct() {
-
-        $this->connection = new PDO(
-                        "mysql:host={$this->host};dbname={$this->dbname};",
-                        $this->usuario,
-                        $this->senha);         
-                        
-        $this->connection->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
-    }
                         
     protected function executeCommand($sqlCommand, $parameters){
         
         try{
-                    
+                
+            $this->connection = new PDO(
+                        "mysql:host={$this->host};dbname={$this->dbname};",
+                        $this->usuario,
+                        $this->senha);         
+                        
+            $this->connection->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+            
             $this->connection = new PDO(
                         "mysql:host={$this->host};dbname={$this->dbname};",
                         $this->usuario,
