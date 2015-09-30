@@ -8,17 +8,17 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema mydb
 -- -----------------------------------------------------
 -- -----------------------------------------------------
--- Schema ifburguer
+-- Schema if_burguer
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema ifburguer
+-- Schema if_burguer
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `if_burguer` DEFAULT CHARACTER SET latin1 ;
 USE `if_burguer` ;
 
 -- -----------------------------------------------------
--- Table `ifburguer`.`cliente`
+-- Table `if_burguer`.`cliente`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `if_burguer`.`cliente` (
   `id_cliente` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
@@ -32,7 +32,63 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `ifburguer`.`usuario`
+-- Table `if_burguer`.`estoque`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `if_burguer`.`estoque` (
+  `id_estoque` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
+  `ingredientes` VARCHAR(100) NOT NULL COMMENT '',
+  `date_entrada` DATE NULL DEFAULT NULL COMMENT '',
+  `nome_esto` VARCHAR(200) NOT NULL COMMENT '',
+  `marca` VARCHAR(100) NOT NULL COMMENT '',
+  `forncedor` VARCHAR(200) NOT NULL COMMENT '',
+  `quantidade` INT(11) NOT NULL COMMENT '',
+  PRIMARY KEY (`id_estoque`)  COMMENT '')
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `if_burguer`.`produtos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `if_burguer`.`produtos` (
+  `id_prod` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
+  `nome_pro` VARCHAR(100) NOT NULL COMMENT '',
+  `preco_custo` FLOAT NOT NULL COMMENT '',
+  `preco_venda` FLOAT NOT NULL COMMENT '',
+  `pro_ingredientes` VARCHAR(100) NOT NULL COMMENT '',
+  PRIMARY KEY (`id_prod`)  COMMENT '')
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `if_burguer`.`pedido`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `if_burguer`.`pedido` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
+  `data` DATE NULL DEFAULT NULL COMMENT '',
+  `endereco` VARCHAR(100) NULL DEFAULT NULL COMMENT '',
+  `nome` VARCHAR(100) NULL DEFAULT NULL COMMENT '',
+  `telefone` VARCHAR(100) NULL DEFAULT NULL COMMENT '',
+  `id_cliente` INT(11) NULL DEFAULT NULL COMMENT '',
+  `id_produto` INT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
+  INDEX `id_cliente` (`id_cliente` ASC)  COMMENT '',
+  INDEX `id_produto_idx` (`id_produto` ASC)  COMMENT '',
+  CONSTRAINT `pedido_ibfk_1`
+    FOREIGN KEY (`id_cliente`)
+    REFERENCES `if_burguer`.`cliente` (`id_cliente`),
+  CONSTRAINT `id_produto`
+    FOREIGN KEY (`id_produto`)
+    REFERENCES `if_burguer`.`produtos` (`id_prod`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `if_burguer`.`usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `if_burguer`.`usuario` (
   `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
@@ -43,7 +99,29 @@ CREATE TABLE IF NOT EXISTS `if_burguer`.`usuario` (
   `senha_admin` VARCHAR(100) NULL DEFAULT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '')
 ENGINE = InnoDB
-AUTO_INCREMENT = 9
+AUTO_INCREMENT = 19
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `if_burguer`.`vendas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `if_burguer`.`vendas` (
+  `id_vendas` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
+  `id_cliente` INT(11) NULL DEFAULT NULL COMMENT '',
+  `id_prod` INT(11) NULL DEFAULT NULL COMMENT '',
+  `data_venda` DATE NULL DEFAULT NULL COMMENT '',
+  `quantidade_vendas` INT(11) NOT NULL COMMENT '',
+  PRIMARY KEY (`id_vendas`)  COMMENT '',
+  INDEX `fk_vendas_usuario_cliente_Idx` (`id_cliente` ASC)  COMMENT '',
+  INDEX `fk_vendas_produtos_Idx` (`id_prod` ASC)  COMMENT '',
+  CONSTRAINT `fk_vendas_usuario_cliente`
+    FOREIGN KEY (`id_cliente`)
+    REFERENCES `if_burguer`.`cliente` (`id_cliente`),
+  CONSTRAINT `fk_vendas_produtos`
+    FOREIGN KEY (`id_prod`)
+    REFERENCES `if_burguer`.`produtos` (`id_prod`))
+ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
 
