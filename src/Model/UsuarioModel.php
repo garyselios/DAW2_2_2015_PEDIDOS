@@ -64,17 +64,58 @@ class UsuarioModel {
     
     public function insertarUsuario() {  
         
-        $paramters = array();
-        $paramters [':nome'] = $this->getNome();
-        $paramters [':username'] = $this->getUsername();
-        $paramters [':email'] = $this->getEmail();
-        $paramters [':senha'] = $this->getSenha();
-        $paramters [':admin'] = $this->getAdmin();
+        $parameters = array();
+        $parameters [':nome'] = $this->getNome();
+        $parameters [':username'] = $this->getUsername();
+        $parameters [':email'] = $this->getEmail();
+        $parameters [':senha'] = $this->getSenha();
+        $parameters [':admin'] = $this->getAdmin();
         
         $objUsuarioDao = new UsuarioDao();
         
-        return $objUsuarioDao->insertUsuario($paramters);
+        return $objUsuarioDao->insertUsuario($parameters);
     }
     
+    public function eliminarUsuario() {
+        
+        $parameters = array();
+        $parameters [':id'] = $this->getId();
+        
+        $objUsuarioDao = new UsuarioDao();
+        
+        return $objUsuarioDao->deleteUsuario($parameters);
+    }
+    
+    public function listarTodosUsuario(){
+        
+        $objUsuarioDao = new UsuarioDao();
+        
+        return $objUsuarioDao->selectAllUsuario();
+    }
+    
+    public function  listarUsuario(){
+        
+        $objUsuarioDao = new UsuarioDao();
+        
+        $parameters = array();
+        $parameters ['id'] = $this->getId();
+        
+        return $objUsuarioDao->selectByIdUsuario($parameters);
+    }
+    
+    public function atualizarUsuario(){
+        
+        $parameters = array();
+        $parameters ['id'] = $this->getId();
+        $parameters [':nome'] = $this->getNome();
+        $parameters [':username'] = $this->getUsername();
+        $parameters [':email'] = $this->getEmail();
+        $parameters [':senha'] = $this->getSenha();
+        $parameters [':admin'] = $this->getAdmin();
+        
+        $objUsuarioDao = new UsuarioDao();
+        
+        return $objUsuarioDao->updateUsuario($parameters);
+    }
 }
 

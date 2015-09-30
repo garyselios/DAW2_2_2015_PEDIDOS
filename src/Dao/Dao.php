@@ -19,14 +19,6 @@ class Dao{
                         
             $this->connection->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
             
-            $this->connection = new PDO(
-                        "mysql:host={$this->host};dbname={$this->dbname};",
-                        $this->usuario,
-                        $this->senha);         
-                        
-            $this->connection->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
-            
-            
             $this->connection ->beginTransaction();
             $comand = $this->connection ->prepare($sqlCommand);
 
@@ -38,7 +30,7 @@ class Dao{
             }
             $comand ->execute();
             $this->connection->commit();
-    //        return true;
+            return true;
         } catch (PDOException $ex) {
             echo $ex->getMessage();
             if($this->connection != null){
@@ -46,7 +38,7 @@ class Dao{
                     $this->connection->rollBack();
                 }
             }
-    //        return false;
+            return false;
         } finally {
             if($this->connection != null){
                 $this->connection = null;

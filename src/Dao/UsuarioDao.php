@@ -9,6 +9,37 @@ class UsuarioDao extends Dao{
         
         return $this->executeCommand($sqlCommand,$parameters);
     }
+ 
+    public function deleteUsuario($parameters){
+        
+        $sqlCommand = "DELETE FROM usuario"
+                . " WHERE id = :id";
+        
+        return $this->executeCommand($sqlCommand, $parameters);
+    }
     
+    public function selectAllUsuario(){
+        
+        $sqlCommand = "SELECT * FROM usuario";
+        
+        return $this->executeQuery($sqlCommand, array());
+    }
+    
+    public function selectByIdUsuario($parameters){
+        
+        $sqlCommand = "SELECT * FROM usuario"
+                . " WHERE id = :id";
+        
+        return $this->executeQuery($sqlCommand, $parameters);
+    }
+    
+    public function updateUsuario($parameters){
+        
+        $sqlCommand = "UPDATE usuario"
+                . " SET nome = :nome, username = :username, email = :email, senha = :senha, senha_admin = :admin"
+                . " WHERE id = :id";
+        
+        return $this->executeCommand($sqlCommand, $parameters);
+    }
 }
 
