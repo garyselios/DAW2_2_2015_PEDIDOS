@@ -7,7 +7,7 @@ class UsuarioModel {
     private $username;
     private $email;
     private $senha;
-    private $admin;
+
     
     public function setId($id) {
         $this->id = $id;
@@ -33,11 +33,6 @@ class UsuarioModel {
         return $this;
     }
     
-    public function setAdmin($admin) {
-        $this->admin = $admin;
-        return $this;
-    }
-    
     public function getId() {
         return $this->id;
     }
@@ -58,9 +53,6 @@ class UsuarioModel {
         return $this->senha;
     }
     
-    public function getAdmin() {
-        return $this->admin;
-    }
     
     public function insertarUsuario() {  
         
@@ -69,7 +61,6 @@ class UsuarioModel {
         $parameters [':username'] = $this->getUsername();
         $parameters [':email'] = $this->getEmail();
         $parameters [':senha'] = $this->getSenha();
-        $parameters [':admin'] = $this->getAdmin();
         
         $objUsuarioDao = new UsuarioDao();
         
@@ -111,7 +102,6 @@ class UsuarioModel {
         $parameters [':username'] = $this->getUsername();
         $parameters [':email'] = $this->getEmail();
         $parameters [':senha'] = $this->getSenha();
-        $parameters [':admin'] = $this->getAdmin();
         
         $objUsuarioDao = new UsuarioDao();
         

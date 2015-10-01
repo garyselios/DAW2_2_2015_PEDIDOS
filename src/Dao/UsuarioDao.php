@@ -4,8 +4,8 @@ class UsuarioDao extends Dao{
     
     public function insertUsuario($parameters){
         
-        $sqlCommand = "INSERT INTO usuario (nome,username,email,senha,senha_admin)"
-                . " VALUES (:nome,:username,:email,:senha,:admin)";
+        $sqlCommand = "INSERT INTO usuario (nome,username,email,senha)"
+                . " VALUES (:nome,:username,:email,:senha)";
         
         return $this->executeCommand($sqlCommand,$parameters);
     }
@@ -36,7 +36,7 @@ class UsuarioDao extends Dao{
     public function updateUsuario($parameters){
         
         $sqlCommand = "UPDATE usuario"
-                . " SET nome = :nome, username = :username, email = :email, senha = :senha, senha_admin = :admin"
+                . " SET nome = :nome, username = :username, email = :email, senha = :senha,"
                 . " WHERE id = :id";
         
         return $this->executeCommand($sqlCommand, $parameters);

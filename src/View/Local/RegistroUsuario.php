@@ -17,7 +17,6 @@
             <input type="text" id="username" name="username" placeholder="Username" required><br><br>
             <input type="email" id="email" name="email" placeholder="Email" required><br><br>
             <input type="password" id="senha" name="senha" placeholder="Senha" required><br><br>
-            <input type="text" id="admin" name="admin" placeholder="Admin" required><br><br>
             
             <input type="submit">
         </form>

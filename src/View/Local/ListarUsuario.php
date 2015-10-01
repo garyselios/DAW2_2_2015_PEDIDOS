@@ -13,7 +13,6 @@
                     <th>Useername</th>
                     <th>Email</th>
                     <th>Senha</th>
-                    <th>Admin</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,7 +23,6 @@
                     <td><?php echo $us['username']?></td>
                     <td><?php echo $us['email']?></td>
                     <td><?php echo $us['senha']?></td>
-                    <td><?php echo $us['senha_admin']?></td>
                     
                 </tr>
                 <?php endforeach;?>

@@ -12,7 +12,6 @@ class UsuarioController{
             $objUsuarioModel->setUsername($_POST['username']);
             $objUsuarioModel->setEmail($_POST['email']);
             $objUsuarioModel->setSenha($_POST['senha']);
-            $objUsuarioModel->setAdmin($_POST['admin']);
             
             if($objUsuarioModel->insertarUsuario()){
                 $msg = "ok";
@@ -60,7 +59,6 @@ class UsuarioController{
             $objUsuarioModel->setUsername($_POST['username']);
             $objUsuarioModel->setEmail($_POST['email']);
             $objUsuarioModel->setSenha($_POST['senha']);
-            $objUsuarioModel->setAdmin($_POST['admin']);
             
             if($objUsuarioModel->atualizarUsuario()){
                 echo "ok";
