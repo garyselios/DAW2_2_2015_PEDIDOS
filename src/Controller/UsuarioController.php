@@ -66,6 +66,7 @@ class UsuarioController{
                 echo "problem";
             }
         }
+        
         if($_GET['id']){
             
             $objUsuarioModel->setId($_GET['id']);
