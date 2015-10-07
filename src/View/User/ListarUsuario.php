@@ -13,16 +13,18 @@
                     <th>Useername</th>
                     <th>Email</th>
                     <th>Senha</th>
+                    <th>Atualizar</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($usuario as $us):?>
+                <?php foreach ($usuarios as $us):?>
                 <tr>
                     <td><?php echo $us['id']?></td>
                     <td><?php echo $us['nome']?></td>
                     <td><?php echo $us['username']?></td>
                     <td><?php echo $us['email']?></td>
                     <td><?php echo $us['senha']?></td>
+                    <td><a href="index.php?Controller=UsuarioController&Action=atualizar&id=<?php echo $us['id']?>">Atualizar</a></td>
                     
                 </tr>
                 <?php endforeach;?>

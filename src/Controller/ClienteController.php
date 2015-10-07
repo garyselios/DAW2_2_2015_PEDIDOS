@@ -39,7 +39,7 @@ class ClienteController{
         
     }
     
-    public function listarTodos(){
+    public function listar(){
         
         $objClienteModel = new ClienteModel();
         

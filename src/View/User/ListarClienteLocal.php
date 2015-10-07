@@ -24,7 +24,7 @@
                     <td><?php echo $cli['username']?></td>
                     <td><?php echo $cli['email']?></td>
                     <td><?php echo $cli['senha']?></td>
-                    <td><a href="index.php?Controller=ClienteController&Action=atualizar&id=<?php echo $cli['id']?>">Atualizar</a></td>
+                    <td><a href="index.php?Controller=UsuarioController&Action=atualizarCliente&id=<?php echo $cli['id']?>">Atualizar</a></td>
                     
                 </tr>
                 <?php endforeach;?>

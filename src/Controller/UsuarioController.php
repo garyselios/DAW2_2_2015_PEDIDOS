@@ -19,7 +19,7 @@ class UsuarioController{
                 $msg = "problem";
             }
         }  
-        include 'View/Local/RegistroUsuario.php';
+        include 'View/User/RegistroUsuario.php';
     }
     
     public function deletar(){
@@ -39,13 +39,13 @@ class UsuarioController{
         
     }
     
-    public function listarTodos(){
+    public function listar(){
         
         $objUsuarioModel = new UsuarioModel();
         
         $usuarios = $objUsuarioModel->listarTodosUsuario();
-        
-        include 'View/Local/ListarUsuario.php';        
+            
+        include 'View/User/ListarUsuario.php';        
     }
     
     public function atualizar(){
@@ -73,6 +73,83 @@ class UsuarioController{
             $usuario = $objUsuarioModel->listarUsuario();
         }
         
-        include 'View/Local/AtualizarUsuario.php';
+        include 'View/User/AtualizarUsuario.php';
+    }
+    
+    //A partit de aqui estan los metodos para configurar los clientes a partir de la interfaz de usuario.
+    
+    
+     public function inserirCliente(){
+        
+        if(isset($_POST['nome'])){
+
+            $objClienteModel = new ClienteModel();
+
+            $objClienteModel->setNome($_POST['nome']);
+            $objClienteModel->setUsername($_POST['username']);
+            $objClienteModel->setEmail($_POST['email']);
+            $objClienteModel->setSenha($_POST['senha']);
+            
+            if($objClienteModel->insertarCliente()){
+                $msg = "ok";
+            } else{
+                $msg = "problem";
+            }
+        }  
+        include 'View/User/RegistroClienteLocal.php';
+    }
+    
+    public function deletarCliente(){
+        
+        if(isset($_GET['id'])){
+            
+            $objClienteModel = new ClienteModel();
+            
+            $objClienteModel->setId($_GET['id']);
+            
+            if ($objClienteModel->eliminarCliente()){
+                echo "ok";
+            }  else {
+                echo "problem";
+            }
+        }
+        
+    }
+    
+    public function listarCliente(){
+        
+        $objClienteModel = new ClienteModel();
+        
+        $clientes = $objClienteModel->listarTodosCliente();
+        
+        include 'View/User/ListarClienteLocal.php';        
+    }
+    
+    public function atualizarCliente(){
+        
+        $objClienteModel = new ClienteModel();
+        
+        if(isset($_POST['nome'])){
+            
+            $objClienteModel->setId($_GET['id']);
+            $objClienteModel->setNome($_POST['nome']);
+            $objClienteModel->setUsername($_POST['username']);
+            $objClienteModel->setEmail($_POST['email']);
+            $objClienteModel->setSenha($_POST['senha']);
+            
+            if($objClienteModel->atualizarCliente()){
+                echo "ok";
+            }  else {
+                echo "problem";
+            }
+        }
+        
+        if($_GET['id']){
+            
+            $objClienteModel->setId($_GET['id']);
+            $cliente = $objClienteModel->listarCliente();
+        }
+        
+        include 'View/User/AtualizarClienteLocal.php';
     }
 }
