@@ -5,13 +5,14 @@ class UsuarioController{
     public function inserir(){
         
         if(isset($_POST['nome'])){
-
+            
             $objUsuarioModel = new UsuarioModel();
 
             $objUsuarioModel->setNome($_POST['nome']);
             $objUsuarioModel->setUsername($_POST['username']);
             $objUsuarioModel->setEmail($_POST['email']);
             $objUsuarioModel->setSenha($_POST['senha']);
+            $objUsuarioModel->setTipoUsuario(2);
             
             if($objUsuarioModel->insertarUsuario()){
                 $msg = "ok";

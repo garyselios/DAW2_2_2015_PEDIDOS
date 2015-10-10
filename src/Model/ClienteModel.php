@@ -7,6 +7,7 @@ class ClienteModel {
     private $username;
     private $email;
     private $senha;
+    private $tipoUsuario;
 
     
     public function setId($id) {
@@ -33,6 +34,11 @@ class ClienteModel {
         return $this;
     }
     
+    public function setTipoUsuario($tipoUsuario) {
+        $this->tipoUsuario = $tipoUsuario;
+        return $this;
+    }
+    
     public function getId() {
         return $this->id;
     }
@@ -53,6 +59,10 @@ class ClienteModel {
         return $this->senha;
     }
     
+    public function getTipoUsuario() {
+        return $this->tipoUsuario;
+    }
+    
     
     public function insertarCliente() {  
         
@@ -61,6 +71,7 @@ class ClienteModel {
         $parameters [':username'] = $this->getUsername();
         $parameters [':email'] = $this->getEmail();
         $parameters [':senha'] = $this->getSenha();
+        $parameters [':tipo_usuario'] = $this->getTipoUsuario();
         
         $objClienteDao = new ClienteDao();
         

@@ -18,7 +18,7 @@
             <input type="email" id="email" name="email" placeholder="Email" required><br><br>
             <input type="password" id="senha" name="senha" placeholder="Senha" required><br><br>
             
-            <input type="submit" value="cadastrar">
+            <input type="submit" value="cadastrar" name="submit">
         </form>
     </body>
 </html>

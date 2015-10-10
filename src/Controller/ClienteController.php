@@ -4,7 +4,7 @@ class ClienteController{
     
     public function inserir(){
         
-        if(isset($_POST['nome'])){
+        if(isset($_POST['submit'])){
 
             $objClienteModel = new ClienteModel();
 
@@ -12,6 +12,7 @@ class ClienteController{
             $objClienteModel->setUsername($_POST['username']);
             $objClienteModel->setEmail($_POST['email']);
             $objClienteModel->setSenha($_POST['senha']);
+            $objClienteModel->setTipoUsuario(3);
             
             if($objClienteModel->insertarCliente()){
                 $msg = "ok";

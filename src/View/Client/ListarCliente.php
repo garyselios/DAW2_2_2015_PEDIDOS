@@ -10,9 +10,9 @@
                 <tr>
                     <th>Id</th>
                     <th>Nome</th>
-                    <th>Useername</th>
+                    <th>Username</th>
                     <th>Email</th>
-                    <th>Senha</th>
+                    <th>Tipo</th>
                     <th>Atualizar</th>
                 </tr>
             </thead>
@@ -23,7 +23,7 @@
                     <td><?php echo $cli['nome']?></td>
                     <td><?php echo $cli['username']?></td>
                     <td><?php echo $cli['email']?></td>
-                    <td><?php echo $cli['senha']?></td>
+                    <td><?php echo $cli['tipo']?></td>
                     <td><a href="index.php?Controller=ClienteController&Action=atualizar&id=<?php echo $cli['id']?>">Atualizar</a></td>
                     
                 </tr>

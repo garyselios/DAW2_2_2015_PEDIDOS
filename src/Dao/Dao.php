@@ -66,6 +66,7 @@ class Dao{
                     $command->bindValue($key, $value);
                 }
             }
+            var_dump($parameters);
             $command->execute();
             $listaRetorno = array();
             for ($i = 0; $row = $command->fetch(PDO::FETCH_ASSOC); $i++) {

@@ -5,6 +5,9 @@
         <title></title>
     </head>
     <body>
+        
+
+        
         <table border="4">
             <thead>
                 <tr>
@@ -12,7 +15,7 @@
                     <th>Nome</th>
                     <th>Useername</th>
                     <th>Email</th>
-                    <th>Senha</th>
+                    <th>Tipo</th>
                     <th>Atualizar</th>
                 </tr>
             </thead>
@@ -23,7 +26,7 @@
                     <td><?php echo $us['nome']?></td>
                     <td><?php echo $us['username']?></td>
                     <td><?php echo $us['email']?></td>
-                    <td><?php echo $us['senha']?></td>
+                    <td><?php echo $us['tipo']?></td>
                     <td><a href="index.php?Controller=UsuarioController&Action=atualizar&id=<?php echo $us['id']?>">Atualizar</a></td>
                     
                 </tr>

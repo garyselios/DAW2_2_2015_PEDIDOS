@@ -4,7 +4,7 @@ class SiteController{
 
     public function index() {
 
-    include 'View/Site/Index.php';
+    include 'View/Site/Home.php';
     }
 
 }
