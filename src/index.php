@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 class ClassAutoloader {
 
     public function __construct() {
@@ -22,16 +23,34 @@ class ClassAutoloader {
 
 new ClassAutoloader();
 
-if (isset($_GET['Controller'])) {
-    $controller = $_GET['Controller'];
-} else {
-    $controller = 'SiteController';
-}
+if(isset($_SESSION['user']) || isset($_SESSION['admin']) || isset($_SESSION['client'])){
 
-if (isset($_GET['Action'])) {
-    $action = $_GET['Action'];
-} else {
-    $action = 'index';
+    if (isset($_GET['Controller'])) {
+        $controller = $_GET['Controller'];
+    } else {
+        $controller = 'SiteController';
+    }
+
+    if (isset($_GET['Action'])) {
+        $action = $_GET['Action'];
+    } else {
+        $action = 'index';
+    }
+    
+} elseif(isset ($_GET['Controller']) && $_GET['Controller'] == 'SiteController'){
+    
+    $controller = 'SiteController';
+    
+    if (isset($_GET['Action'])) {
+        $action = $_GET['Action'];
+    } else {
+        $action = 'index';
+    }
+}  else {
+    
+    $controller = 'LoginController';
+    $action = 'entrar';
+    
 }
 
 $controller = new $controller();

@@ -11,8 +11,15 @@ class LoginController{
             $objLoginModel->setSenha($_POST['senha']);
             
             if($objLoginModel->logar()){
-                $_SESSION['user'] = $objLoginModel->logar();
-                var_dump($_SESSION['user']);
+                $login = $objLoginModel->logar();
+                var_dump($login);
+                if($login[0]['tipo'] == 'USER'){
+                    $_SESSION['user'] = $login;
+                } elseif($login[0]['tipo'] == 'CLIENT'){
+                    $_SESSION['client'] = $login;
+                } elseif($login[0]['tipo'] == 'ADMIN'){
+                    $_SESSION['admin'] = $login;
+                }
             }
             header('Location:index.php');
         }

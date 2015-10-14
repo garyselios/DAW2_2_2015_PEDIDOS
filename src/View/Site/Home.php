@@ -6,22 +6,17 @@
         <title>If Burguer</title>
     </head>
     <body>
-        <?php
-        if(isset($_SESSION['user'])){
-            echo '<a href="index.php?Controller=LoginController&Action=salir">Logout</a><br><br>';
-            echo 'Bienvenido: <strong>' . $_SESSION['user'][0]['nome'] . '</strong>';
-        } else{
-            echo '<a href="index.php?Controller=LoginController&Action=entrar">Login</a><br>';
-        }
-        ?>
+        
+        Estas en el site
+        <?php if(isset($_SESSION['client'])):?>
+            <a href="index.php?Controller=LoginController&Action=salir">Logout</a><br><br>
+            Bienvenido: <strong><?php echo $_SESSION['client'][0]['nome']; ?></strong><br><br>
+            <a href="index.php?Controller=ClienteController&Action=inserir">Registrar Cliente</a><br>
+        
+        <?php else:?>
+            <a href="index.php?Controller=LoginController&Action=entrar">Login</a><br>
+        <?php endif;?>
         <br><br>
-        <a href="index.php?Controller=UsuarioController&Action=listar">Listar Usuario</a><br>
-        <a href="index.php?Controller=UsuarioController&Action=inserir">Registrar Usuario</a><br>
         
-        <a href="index.php?Controller=UsuarioController&Action=listarCliente">Listar Cliente - Usuario</a><br>
-        <a href="index.php?Controller=UsuarioController&Action=inserirCliente">Registrar Cliente - Usuario</a><br>
-        
-        <a href="index.php?Controller=ClienteController&Action=listar">Listar Cliente</a><br>
-        <a href="index.php?Controller=ClienteController&Action=inserir">Registrar Cliente</a><br>
     </body>
 </html>
