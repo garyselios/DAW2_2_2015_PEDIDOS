@@ -153,4 +153,10 @@ class UsuarioController{
         
         include 'View/User/AtualizarClienteLocal.php';
     }
+    
+    public function index() {
+
+    include 'View/Local/HomeLocal.php';
+    }
+    
 }

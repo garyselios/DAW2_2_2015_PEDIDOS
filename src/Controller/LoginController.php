@@ -11,15 +11,9 @@ class LoginController{
             $objLoginModel->setSenha($_POST['senha']);
             
             if($objLoginModel->logar()){
-                $login = $objLoginModel->logar();
-                var_dump($login);
-                if($login[0]['tipo'] == 'USER'){
-                    $_SESSION['user'] = $login;
-                } elseif($login[0]['tipo'] == 'CLIENT'){
-                    $_SESSION['client'] = $login;
-                } elseif($login[0]['tipo'] == 'ADMIN'){
-                    $_SESSION['admin'] = $login;
-                }
+                
+                $_SESSION['usuario'] = $objLoginModel->logar();
+                
             }
             header('Location:index.php');
         }
@@ -35,4 +29,20 @@ class LoginController{
         }
     }
     
+    public function recuperar() {
+
+        if (isset($_POST['submit'])) {
+            
+            $objLoginModel = new LoginModel();
+
+            $objLoginModel->setEmail($_POST['email']);
+            
+            $email = $objLoginModel->recuperarSenha();
+               var_dump($email);     
+        }
+
+        include 'View/ConfirmaEmail.php';
+    }
+    
 }
+    

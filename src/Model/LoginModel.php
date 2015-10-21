@@ -5,6 +5,7 @@ class LoginModel{
 
     private $username;
     private $senha;
+    private $email;
 
         
     public function setUsername($username) {
@@ -17,12 +18,21 @@ class LoginModel{
         return $this;
     }
     
+    public function setEmail($email) {
+        $this->email = $email;
+        return $this;
+    }
+    
     public function getUsername() {
         return $this->username;
     }
     
     public function getSenha() {
         return $this->senha;
+    }
+    
+    public function getEmail() {
+        return $this->email;
     }
     
     public function logar(){
@@ -34,5 +44,16 @@ class LoginModel{
         $objLoginDao = new LoginDao();
         
         return $objLoginDao->login($parameters);
+    }
+    
+     public function recuperarSenha(){
+        
+        $parameters = array();
+        $parameters [':email'] = $this->getEmail();
+        
+        
+        $objLoginDao = new LoginDao();
+        
+        return $objLoginDao->recuperacion($parameters);
     }
 }

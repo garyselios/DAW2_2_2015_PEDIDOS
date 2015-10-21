@@ -20,6 +20,8 @@
             <input type="text" id="username" name="username" placeholder="Username" required><br><br>
             <input type="password" id="senha" name="senha" placeholder="Senha" required><br><br>
             
+            <a href="index.php?Controller=LoginController&Action=recuperar">Olvide mi Contraseña</a><br><br>
+
             <input type="submit" value="Entrar" name="submit">
         </form>
     </body>

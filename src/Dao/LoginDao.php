@@ -6,9 +6,18 @@ class LoginDao extends Dao{
         
         $sqlCommand = "SELECT tipo_usuario.nome AS tipo,usuario.* "
                 . " FROM usuario "
-                . " LEFT JOIN tipo_usuario "
+                . " INNER JOIN tipo_usuario "
                 . " ON usuario.tipo_usuario = tipo_usuario.id "
                 . " WHERE username = :username && senha = :senha";
+        
+        return $this->executeQuery($sqlCommand, $parameters);
+    }
+    
+    public function recuperacion($parameters){
+        
+        $sqlCommand = "SELECT email,senha"
+                . " FROM usuario "
+                . " WHERE email = :email ";
         
         return $this->executeQuery($sqlCommand, $parameters);
     }
