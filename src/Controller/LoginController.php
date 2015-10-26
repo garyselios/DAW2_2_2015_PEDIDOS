@@ -37,8 +37,9 @@ class LoginController{
 
             $objLoginModel->setEmail($_POST['email']);
             
-            $email = $objLoginModel->recuperarSenha();
-               var_dump($email);     
+            $recuperar = $objLoginModel->recuperarSenha();
+            
+            include 'Mailer/mail.php';
         }
 
         include 'View/ConfirmaEmail.php';
