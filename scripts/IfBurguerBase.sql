@@ -35,8 +35,8 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `if_burguer`.`produtos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `if_burguer`.`produtos` (
-  `id` INT(11) NOT NULL COMMENT '',
+CREATE TABLE IF NOT EXISTS `if_burguer`.`produto` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
   `nome` VARCHAR(30) NOT NULL COMMENT '',
   `preco` FLOAT NOT NULL COMMENT '',
   `custo` FLOAT NOT NULL COMMENT '',

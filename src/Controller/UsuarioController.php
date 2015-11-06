@@ -1,11 +1,11 @@
 <?php
 
-class UsuarioController{
-    
-    public function inserir(){
-        
-        if(isset($_POST['nome'])){
-            
+class UsuarioController {
+
+    public function inserir() {
+
+        if (isset($_POST['nome'])) {
+
             $objUsuarioModel = new UsuarioModel();
 
             $objUsuarioModel->setNome($_POST['nome']);
@@ -13,76 +13,75 @@ class UsuarioController{
             $objUsuarioModel->setEmail($_POST['email']);
             $objUsuarioModel->setSenha($_POST['senha']);
             $objUsuarioModel->setTipoUsuario(2);
-            
-            if($objUsuarioModel->insertarUsuario()){
+
+            if ($objUsuarioModel->insertarUsuario()) {
                 $msg = "ok";
-            } else{
+            } else {
                 $msg = "problem";
             }
-        }  
-        include 'View/User/RegistroUsuario.php';
+        }
+        include 'View/Local/RegistroUsuario.php';
     }
-    
-    public function deletar(){
-        
-        if(isset($_GET['id'])){
-            
+
+    public function deletar() {
+
+        if (isset($_GET['id'])) {
+
             $objUsuarioModel = new UsuarioModel();
-            
+
             $objUsuarioModel->setId($_GET['id']);
-            
-            if ($objUsuarioModel->eliminarUsuario()){
+
+            if ($objUsuarioModel->eliminarUsuario()) {
                 echo "ok";
-            }  else {
+            } else {
                 echo "problem";
             }
         }
-        
     }
-    
-    public function listar(){
-        
+
+    public function listar() {
+
         $objUsuarioModel = new UsuarioModel();
-        
+
         $usuarios = $objUsuarioModel->listarTodosUsuario();
-            
-        include 'View/User/ListarUsuario.php';        
+
+        include 'View/Local/ListarUsuario.php';
     }
-    
-    public function atualizar(){
-        
+
+    public function atualizar() {
+
         $objUsuarioModel = new UsuarioModel();
-        
-        if(isset($_POST['nome'])){
-            
+
+        if (isset($_POST['nome'])) {
+
             $objUsuarioModel->setId($_GET['id']);
             $objUsuarioModel->setNome($_POST['nome']);
             $objUsuarioModel->setUsername($_POST['username']);
             $objUsuarioModel->setEmail($_POST['email']);
             $objUsuarioModel->setSenha($_POST['senha']);
-            
-            if($objUsuarioModel->atualizarUsuario()){
+
+            if ($objUsuarioModel->atualizarUsuario()) {
                 echo "ok";
-            }  else {
+            } else {
                 echo "problem";
             }
         }
-        
-        if($_GET['id']){
-            
+
+        if ($_GET['id']) {
+
             $objUsuarioModel->setId($_GET['id']);
             $usuario = $objUsuarioModel->listarUsuario();
         }
-        
-        include 'View/User/AtualizarUsuario.php';
+
+        include 'View/Local/AtualizarUsuario.php';
     }
-    
+
     //A partit de aqui estan los metodos para configurar los clientes a partir de la interfaz de usuario.
-    
-    
-     public function inserirCliente(){
-        
-        if(isset($_POST['nome'])){
+
+
+    public function inserirCliente() {
+
+        if (isset($_POST['nome'])) {
 
             $objClienteModel = new ClienteModel();
 
@@ -90,73 +89,72 @@ class UsuarioController{
             $objClienteModel->setUsername($_POST['username']);
             $objClienteModel->setEmail($_POST['email']);
             $objClienteModel->setSenha($_POST['senha']);
-            
-            if($objClienteModel->insertarCliente()){
+
+            if ($objClienteModel->insertarCliente()) {
                 $msg = "ok";
-            } else{
+            } else {
                 $msg = "problem";
             }
-        }  
-        include 'View/User/RegistroClienteLocal.php';
+        }
+        include 'View/Local/RegistroClienteLocal.php';
     }
-    
-    public function deletarCliente(){
-        
-        if(isset($_GET['id'])){
-            
+
+    public function deletarCliente() {
+
+        if (isset($_GET['id'])) {
+
             $objClienteModel = new ClienteModel();
-            
+
             $objClienteModel->setId($_GET['id']);
-            
-            if ($objClienteModel->eliminarCliente()){
+
+            if ($objClienteModel->eliminarCliente()) {
                 echo "ok";
-            }  else {
+            } else {
                 echo "problem";
             }
         }
-        
     }
-    
-    public function listarCliente(){
-        
+
+    public function listarCliente() {
+
         $objClienteModel = new ClienteModel();
-        
+
         $clientes = $objClienteModel->listarTodosCliente();
-        
-        include 'View/User/ListarClienteLocal.php';        
+
+        include 'View/Local/ListarClienteLocal.php';
     }
-    
-    public function atualizarCliente(){
-        
+
+    public function atualizarCliente() {
+
         $objClienteModel = new ClienteModel();
-        
-        if(isset($_POST['nome'])){
-            
+
+        if (isset($_POST['nome'])) {
+
             $objClienteModel->setId($_GET['id']);
             $objClienteModel->setNome($_POST['nome']);
             $objClienteModel->setUsername($_POST['username']);
             $objClienteModel->setEmail($_POST['email']);
             $objClienteModel->setSenha($_POST['senha']);
-            
-            if($objClienteModel->atualizarCliente()){
+
+            if ($objClienteModel->atualizarCliente()) {
                 echo "ok";
-            }  else {
+            } else {
                 echo "problem";
             }
         }
-        
-        if($_GET['id']){
-            
+
+        if ($_GET['id']) {
+
             $objClienteModel->setId($_GET['id']);
             $cliente = $objClienteModel->listarCliente();
         }
-        
-        include 'View/User/AtualizarClienteLocal.php';
+
+        include 'View/Local/AtualizarClienteLocal.php';
     }
-    
+
     public function index() {
 
-    include 'View/Local/HomeLocal.php';
+        include 'View/Local/HomeLocal.php';
     }
-    
+
 }
