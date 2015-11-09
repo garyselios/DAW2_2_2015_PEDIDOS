@@ -32,8 +32,6 @@
                 </tr>
                 <?php endforeach;?>
             </tbody>
-            
-            <?php var_dump($usuarios);?>
         </table>
     </body>
 </html>

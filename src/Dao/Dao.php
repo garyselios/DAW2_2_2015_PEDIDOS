@@ -1,63 +1,59 @@
 <?php
 
-class Dao{
-    
+class Dao {
+
     protected $connection;
     private $host = 'localhost';
     private $dbname = 'if_burguer';
     private $usuario = 'root';
     private $senha = 'mysql';
-                        
-    protected function executeCommand($sqlCommand, $parameters){
-        
-        try{
-                
-            $this->connection = new PDO(
-                        "mysql:host={$this->host};dbname={$this->dbname};",
-                        $this->usuario,
-                        $this->senha);         
-                        
-            $this->connection->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
-            
-            $this->connection ->beginTransaction();
-            $comand = $this->connection ->prepare($sqlCommand);
 
-            if($parameters != null){
-                foreach ($parameters as $key => $value){
-                    $comand->bindValue($key, $value);      
+    protected function executeCommand($sqlCommand, $parameters) {
+
+        try {
+
+            $this->connection = new PDO(
+                    "mysql:host={$this->host};dbname={$this->dbname};", $this->usuario, $this->senha);
+
+            $this->connection->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+
+            $this->connection->beginTransaction();
+            $comand = $this->connection->prepare($sqlCommand);
+
+            if ($parameters != null) {
+                foreach ($parameters as $key => $value) {
+                    $comand->bindValue($key, $value);
                 }
-            var_dump($parameters);
+                var_dump($parameters);
             }
-            $comand ->execute();
+            $comand->execute();
             $this->connection->commit();
             return true;
         } catch (PDOException $ex) {
             echo $ex->getMessage();
-            if($this->connection != null){
-                if($this->connection->inTransaction()){
+            if ($this->connection != null) {
+                if ($this->connection->inTransaction()) {
                     $this->connection->rollBack();
                 }
             }
             return false;
         } finally {
-            if($this->connection != null){
+            if ($this->connection != null) {
                 $this->connection = null;
             }
         }
     }
 
     protected function executeQuery($sqlCommand, $parameters) {
-        
+
         try {
-            
+
             $this->connection = new PDO(
-                        "mysql:host={$this->host};dbname={$this->dbname};",
-                        $this->usuario,
-                        $this->senha);         
-                        
+                    "mysql:host={$this->host};dbname={$this->dbname};", $this->usuario, $this->senha);
+
             $this->connection->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
-            
-            $this->connection ->beginTransaction();
+
+            $this->connection->beginTransaction();
             $command = $this->connection->prepare($sqlCommand);
 
             if ($parameters != null) {
@@ -66,7 +62,7 @@ class Dao{
                     $command->bindValue($key, $value);
                 }
             }
-            var_dump($parameters);
+            //var_dump($parameters);
             $command->execute();
             $listaRetorno = array();
             for ($i = 0; $row = $command->fetch(PDO::FETCH_ASSOC); $i++) {
@@ -89,4 +85,40 @@ class Dao{
             }
         }
     }
+
+    protected function multipleCommand($sqlCommand, $parameters) {
+
+        try {
+
+            $this->connection = new PDO(
+                    "mysql:host={$this->host};dbname={$this->dbname};", $this->usuario, $this->senha);
+
+            $connection = $this->connection;
+
+            $connection->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+
+            $connection->beginTransaction();
+
+            include 'DaoMultiple.php';
+
+            $objMultiple = new DaoMultiple();
+            if ($objMultiple->transMultiple($sqlCommand, $parameters, $connection)) {
+                $connection->commit();
+            }
+            return true;
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+            if ($connection != null) {
+                if ($connection->inTransaction()) {
+                    $connection->rollBack();
+                }
+            }
+            return false;
+        } finally {
+            if ($connection != null) {
+                $connection = null;
+            }
+        }
+    }
+
 }

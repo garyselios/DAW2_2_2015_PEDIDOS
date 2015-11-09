@@ -84,7 +84,7 @@ if (isset($_GET['Controller']) && $_GET['Controller'] == 'LoginController') {
     }
 
     //var_dump($_SESSION['usuario']);
-} elseif (isset($_GET['Controller']) && $_GET['Controller'] != 'SiteControler') {
+} elseif (isset($_GET['Controller']) && $_GET['Controller'] != 'SiteController') {
    
     echo 'Usted no tiene permiso para entrar a este sitio <br>';
     $controller = 'SiteController';
@@ -93,7 +93,7 @@ if (isset($_GET['Controller']) && $_GET['Controller'] == 'LoginController') {
 } else {
 
     $controller = 'SiteController';
-
+    
     if (isset($_GET['Action'])) {
         $action = $_GET['Action'];
     } else {

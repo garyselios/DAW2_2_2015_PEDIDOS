@@ -29,8 +29,6 @@
                 </tr>
                 <?php endforeach;?>
             </tbody>
-            
-            <?php var_dump($clientes);?>
         </table>
     </body>
 </html>

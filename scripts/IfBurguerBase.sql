@@ -114,18 +114,18 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `if_burguer`.`vendas` (
   `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
-  `id_comp` INT(11) NULL DEFAULT NULL COMMENT '',
+  `id_usuario` INT(11) NULL DEFAULT NULL COMMENT '',
   `id_prod` INT(11) NULL COMMENT '',
   `data` DATE NULL COMMENT '',
   `quantidade` INT(11) NOT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '',
   INDEX `id_prod_Idx` (`id_prod` ASC)  COMMENT '',
-  INDEX `id_comp_idx` (`id_comp` ASC)  COMMENT '',
+  INDEX `id_usuario_idx` (`id_usuario` ASC)  COMMENT '',
   CONSTRAINT `id_prod`
     FOREIGN KEY (`id_prod`)
-    REFERENCES `if_burguer`.`produtos` (`id`),
-  CONSTRAINT `id_comp`
-    FOREIGN KEY (`id_comp`)
+    REFERENCES `if_burguer`.`produto` (`id`),
+  CONSTRAINT `id_usuario`
+    FOREIGN KEY (`id_usuario`)
     REFERENCES `if_burguer`.`usuario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
