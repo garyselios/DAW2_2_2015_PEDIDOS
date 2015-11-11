@@ -13,10 +13,10 @@ class SiteController{
 
             $objClienteModel = new ClienteModel();
 
-            $objClienteModel->setNome($_POST['nome']);
+            $objClienteModel->setNombre($_POST['nombre']);
             $objClienteModel->setUsername($_POST['username']);
             $objClienteModel->setEmail($_POST['email']);
-            $objClienteModel->setSenha($_POST['senha']);
+            $objClienteModel->setSenha($_POST['contrasena']);
             $objClienteModel->setTipoUsuario(3);
 
             if ($objClienteModel->insertarCliente()) {

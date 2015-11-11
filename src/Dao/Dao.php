@@ -24,7 +24,7 @@ class Dao {
                 foreach ($parameters as $key => $value) {
                     $comand->bindValue($key, $value);
                 }
-                var_dump($parameters);
+                //var_dump($parameters);
             }
             $comand->execute();
             $this->connection->commit();
@@ -93,30 +93,31 @@ class Dao {
             $this->connection = new PDO(
                     "mysql:host={$this->host};dbname={$this->dbname};", $this->usuario, $this->senha);
 
-            $connection = $this->connection;
+            $this->connection;
 
-            $connection->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+            $this->connection->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
 
-            $connection->beginTransaction();
+            $this->connection->beginTransaction();
 
             include 'DaoMultiple.php';
 
             $objMultiple = new DaoMultiple();
-            if ($objMultiple->transMultiple($sqlCommand, $parameters, $connection)) {
-                $connection->commit();
-            }
+            $objMultiple->transMultiple($sqlCommand, $parameters, $this->connection);
+            
+            $this->connection->commit();
+            
             return true;
         } catch (PDOException $ex) {
             echo $ex->getMessage();
-            if ($connection != null) {
-                if ($connection->inTransaction()) {
-                    $connection->rollBack();
+            if ($this->connection != null) {
+                if ($this->connection->inTransaction()) {
+                    $this->connection->rollBack();
                 }
             }
             return false;
         } finally {
-            if ($connection != null) {
-                $connection = null;
+            if ($this->connection != null) {
+                $this->connection = null;
             }
         }
     }

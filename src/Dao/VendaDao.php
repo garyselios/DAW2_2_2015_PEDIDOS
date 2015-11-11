@@ -1,6 +1,6 @@
 <?php
 
-class VendasDao extends Dao {
+class VendaDao extends Dao {
 
     public function insertVendas($parameters) {
 

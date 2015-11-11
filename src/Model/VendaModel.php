@@ -124,10 +124,11 @@ class VendaModel {
         $parameters [0][':id_prod'] = $this->getIdProducto();
         $parameters [0][':data'] = $this->getFecha();
         $parameters [0][':quantidade'] = $this->getCantidad();
+        
         $parameters [1][':id'] = 1;
         
         
-        $objVendasDao = new VendasDao();
+        $objVendasDao = new VendaDao();
 
         return $objVendasDao->multipleVendas($parameters);
     }

@@ -3,7 +3,7 @@
 class ProductoModel {
 
     private $id;
-    private $nome;
+    private $nombre;
     private $preco;
     private $custo;
     private $ingredientes;
@@ -12,8 +12,8 @@ class ProductoModel {
         $this->id = $id;
     }
 
-    public function setNome($nome) {
-        $this->nome = $nome;
+    public function setNombre($nombre) {
+        $this->nombre = $nombre;
         return $this;
     }
 
@@ -36,8 +36,8 @@ class ProductoModel {
         return $this->id;
     }
 
-    public function getNome() {
-        return $this->nome;
+    public function getNombre() {
+        return $this->nombre;
     }
 
     public function getPreco() {
@@ -55,7 +55,7 @@ class ProductoModel {
     public function insertarProducto() {
 
         $parameters = array();
-        $parameters [':nome'] = $this->getNome();
+        $parameters [':nombre'] = $this->getNombre();
         $parameters [':preco'] = $this->getPreco();
         $parameters [':custo'] = $this->getCusto();
         $parameters [':ingredientes'] = $this->getIngredientes();
@@ -97,7 +97,7 @@ class ProductoModel {
 
         $parameters = array();
         $parameters ['id'] = $this->getId();
-        $parameters [':nome'] = $this->getNome();
+        $parameters [':nombre'] = $this->getNombre();
         $parameters [':preco'] = $this->getPreco();
         $parameters [':custo'] = $this->getCusto();
         $parameters [':ingredientes'] = $this->getIngredientes();

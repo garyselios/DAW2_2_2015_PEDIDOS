@@ -6,7 +6,7 @@ class ProductoController extends ProductoModel {
 
         if (isset($_POST['submit'])) {
 
-            $this->setNome($_POST['nome']);
+            $this->setNombre($_POST['nombre']);
             $this->setPreco($_POST['preco']);
             $this->setCusto($_POST['custo']);
             $this->setIngredientes($_POST['ingredientes']);
@@ -46,7 +46,7 @@ class ProductoController extends ProductoModel {
         if (isset($_POST['submit'])) {
 
             $this->setId($_GET['id']);
-            $this->setNome($_POST['nome']);
+            $this->setNombre($_POST['nombre']);
             $this->setPreco($_POST['preco']);
             $this->setCusto($_POST['custo']);
             $this->setIngredientes($_POST['ingredientes']);

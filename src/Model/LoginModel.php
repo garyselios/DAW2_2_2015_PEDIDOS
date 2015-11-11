@@ -4,7 +4,7 @@
 class LoginModel{
 
     private $username;
-    private $senha;
+    private $contrasena;
     private $email;
 
         
@@ -13,8 +13,8 @@ class LoginModel{
         return $this;
     }
     
-    public function setSenha($senha) {
-        $this->senha = $senha;
+    public function setContrasena($contrasena) {
+        $this->contrasena = $contrasena;
         return $this;
     }
     
@@ -27,8 +27,8 @@ class LoginModel{
         return $this->username;
     }
     
-    public function getSenha() {
-        return $this->senha;
+    public function getContrasena() {
+        return $this->contrasena;
     }
     
     public function getEmail() {
@@ -39,14 +39,14 @@ class LoginModel{
         
         $parameters = array();
         $parameters [':username'] = $this->getUsername();
-        $parameters [':senha'] = $this->getSenha();
+        $parameters [':contrasena'] = $this->getContrasena();
         
         $objLoginDao = new LoginDao();
         
         return $objLoginDao->login($parameters);
     }
     
-     public function recuperarSenha(){
+     public function recuperarContrasena(){
         
         $parameters = array();
         $parameters [':email'] = $this->getEmail();

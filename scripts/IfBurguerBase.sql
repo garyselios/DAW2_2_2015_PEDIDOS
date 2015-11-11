@@ -1,15 +1,4 @@
--- MySQL Workbench Forward Engineering
-
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
-
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
--- -----------------------------------------------------
--- Schema if_burguer
--- -----------------------------------------------------
+-- MySQL Workbench Forward Engineering-------
 
 -- -----------------------------------------------------
 -- Schema if_burguer
@@ -22,24 +11,24 @@ USE `if_burguer` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `if_burguer`.`estoque` (
   `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
-  `date_entrada` DATE NULL COMMENT '',
-  `nome` VARCHAR(50) NOT NULL COMMENT '',
+  `fecha` DATE NOT NULL COMMENT '',
+  `nombre` VARCHAR(50) NOT NULL COMMENT '',
   `marca` VARCHAR(50) NOT NULL COMMENT '',
-  `forncedor` VARCHAR(50) NOT NULL COMMENT '',
-  `quantidade` INT(11) NOT NULL COMMENT '',
+  `provedor` VARCHAR(50) NOT NULL COMMENT '',
+  `cantidad` INT(11) NOT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '')
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `if_burguer`.`produtos`
+-- Table `if_burguer`.`produto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `if_burguer`.`produto` (
   `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
-  `nome` VARCHAR(30) NOT NULL COMMENT '',
-  `preco` FLOAT NOT NULL COMMENT '',
-  `custo` FLOAT NOT NULL COMMENT '',
+  `nombre` VARCHAR(30) NOT NULL COMMENT '',
+  `precio` FLOAT NOT NULL COMMENT '',
+  `costo` FLOAT NOT NULL COMMENT '',
   `ingredientes` VARCHAR(100) NOT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '')
 ENGINE = InnoDB
@@ -47,11 +36,11 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `if_burguer`.`tipo`
+-- Table `if_burguer`.`tipo_usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `if_burguer`.`tipo_usuario` (
   `id` INT(11) NOT NULL COMMENT '',
-  `nome` VARCHAR(15) NOT NULL COMMENT '',
+  `nombre` VARCHAR(15) NOT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '')
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
@@ -62,13 +51,18 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `if_burguer`.`usuario` (
   `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
-  `nome` VARCHAR(50) NOT NULL COMMENT '',
+  `nombre` VARCHAR(50) NOT NULL COMMENT '',
+  `apellido` VARCHAR(45) NOT NULL COMMENT '',
   `username` VARCHAR(15) NOT NULL COMMENT '',
   `email` VARCHAR(50) NOT NULL COMMENT '',
-  `senha` VARCHAR(30) NOT NULL COMMENT '',
-  `documento` VARCHAR(45) NULL DEFAULT NULL COMMENT '',
-  `idade` INT(11) NULL DEFAULT NULL COMMENT '',
-  `tipo_usuario` INT(11) NULL DEFAULT NULL COMMENT '',
+  `contrasena` VARCHAR(30) NOT NULL COMMENT '',
+  `tipo_usuario` INT(11) NOT NULL COMMENT '',
+  `documento` INT(11) NULL COMMENT '',
+  `edad` INT(11) NULL COMMENT '',
+  `telefono` INT NULL COMMENT '',
+  `direccion` VARCHAR(45) NULL COMMENT '',
+  `ciudad` VARCHAR(45) NULL COMMENT '',
+  `barrio` VARCHAR(45) NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '',
   INDEX `tipo_usuario_idx` (`tipo_usuario` ASC)  COMMENT '',
   CONSTRAINT `tipo_usuario`
@@ -77,7 +71,6 @@ CREATE TABLE IF NOT EXISTS `if_burguer`.`usuario` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -86,18 +79,18 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `if_burguer`.`pedido` (
   `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
-  `data` DATE NULL DEFAULT NULL COMMENT '',
-  `endereco` VARCHAR(100) NULL DEFAULT NULL COMMENT '',
-  `nome` VARCHAR(50) NULL DEFAULT NULL COMMENT '',
-  `telefone` VARCHAR(20) NULL DEFAULT NULL COMMENT '',
-  `id_comprador` INT(11) NULL DEFAULT NULL COMMENT '',
-  `id_produto` INT(11) NULL DEFAULT NULL COMMENT '',
+  `fecha` DATE NOT NULL COMMENT '',
+  `direccion` VARCHAR(100) NULL COMMENT '',
+  `nombre` VARCHAR(50) NOT NULL COMMENT '',
+  `telefono` VARCHAR(20) NULL DEFAULT NULL COMMENT '',
+  `id_comprador` INT(11) NOT NULL COMMENT '',
+  `id_producto` INT(11) NOT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '',
-  INDEX `id_produto_idx` (`id_produto` ASC)  COMMENT '',
+  INDEX `id_produto_idx` (`id_producto` ASC)  COMMENT '',
   INDEX `id_comprador_idx` (`id_comprador` ASC)  COMMENT '',
   CONSTRAINT `id_produto`
-    FOREIGN KEY (`id_produto`)
-    REFERENCES `if_burguer`.`produtos` (`id`)
+    FOREIGN KEY (`id_producto`)
+    REFERENCES `if_burguer`.`produto` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `id_comprador`
@@ -110,14 +103,14 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `if_burguer`.`vendas`
+-- Table `if_burguer`.`venda`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `if_burguer`.`vendas` (
+CREATE TABLE IF NOT EXISTS `if_burguer`.`venda` (
   `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
-  `id_usuario` INT(11) NULL DEFAULT NULL COMMENT '',
-  `id_prod` INT(11) NULL COMMENT '',
-  `data` DATE NULL COMMENT '',
-  `quantidade` INT(11) NOT NULL COMMENT '',
+  `id_usuario` INT(11) NOT NULL COMMENT '',
+  `id_prod` INT(11) NOT NULL COMMENT '',
+  `fecha` DATE NOT NULL COMMENT '',
+  `cantidad` INT(11) NOT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '',
   INDEX `id_prod_Idx` (`id_prod` ASC)  COMMENT '',
   INDEX `id_usuario_idx` (`id_usuario` ASC)  COMMENT '',
@@ -131,4 +124,3 @@ CREATE TABLE IF NOT EXISTS `if_burguer`.`vendas` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
-

@@ -4,8 +4,8 @@ class ProductoDao extends Dao {
 
     public function insertProducto($parameters) {
 
-        $sqlCommand = "INSERT INTO produto (nome,preco,custo,ingredientes)"
-                . " VALUES (:nome,:preco,:custo,:ingredientes)";
+        $sqlCommand = "INSERT INTO produto (nombre,preco,custo,ingredientes)"
+                . " VALUES (:nombre,:preco,:custo,:ingredientes)";
 
         return $this->executeCommand($sqlCommand, $parameters);
     }
@@ -37,7 +37,7 @@ class ProductoDao extends Dao {
     public function updateProducto($parameters) {
 
         $sqlCommand = "UPDATE produto"
-                . " SET nome = :nome, preco = :preco, custo = :custo, ingredientes = :ingredientes"
+                . " SET nombre = :nombre, preco = :preco, custo = :custo, ingredientes = :ingredientes"
                 . " WHERE id = :id";
 
         return $this->executeCommand($sqlCommand, $parameters);

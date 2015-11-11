@@ -3,18 +3,30 @@
 class UsuarioModel {
 
     private $id;
-    private $nome;
+    private $nombre;
+    private $apellido;
     private $username;
     private $email;
-    private $senha;
+    private $contrasena;
     private $tipoUsuario;
+    private $documento;
+    private $edad;
+    private $telefono;
+    private $direccion;
+    private $ciudad;
+    private $barrio;
 
     public function setId($id) {
         $this->id = $id;
     }
 
-    public function setNome($nome) {
-        $this->nome = $nome;
+    public function setNombre($nombre) {
+        $this->nombre = $nombre;
+        return $this;
+    }
+
+    public function setApellido($apellido) {
+        $this->apellido = $apellido;
         return $this;
     }
 
@@ -28,8 +40,8 @@ class UsuarioModel {
         return $this;
     }
 
-    public function setSenha($senha) {
-        $this->senha = $senha;
+    public function setContrasena($contrasena) {
+        $this->contrasena = $contrasena;
         return $this;
     }
 
@@ -38,12 +50,46 @@ class UsuarioModel {
         return $this;
     }
 
+    public function setDocumento($documento) {
+        $this->documento = $documento;
+        return $this;
+    }
+
+    public function setEdad($edad) {
+        $this->edad = $edad;
+        return $this;
+    }
+
+    public function setTelefono($telefono) {
+        $this->telefono = $telefono;
+        return $this;
+    }
+
+    public function setDireccion($direccion) {
+        $this->direccion = $direccion;
+        return $this;
+    }
+
+    public function setCiudad($ciudad) {
+        $this->ciudad = $ciudad;
+        return $this;
+    }
+
+    public function setBarrio($barrio) {
+        $this->barrio = $barrio;
+        return $this;
+    }
+
     public function getId() {
         return $this->id;
     }
 
-    public function getNome() {
-        return $this->nome;
+    public function getNombre() {
+        return $this->nombre;
+    }
+
+    public function getApellido() {
+        return $this->apellido;
     }
 
     public function getUsername() {
@@ -54,22 +100,53 @@ class UsuarioModel {
         return $this->email;
     }
 
-    public function getSenha() {
-        return $this->senha;
+    public function getContrasena() {
+        return $this->contrasena;
     }
 
     public function getTipoUsuario() {
         return $this->tipoUsuario;
     }
 
+    public function getDocumento() {
+        return $this->documento;
+    }
+
+    public function getEdad() {
+        return $this->edad;
+    }
+
+    public function getTelefono() {
+        return $this->telefono;
+    }
+
+    public function getDireccion() {
+        return $this->direccion;
+    }
+
+    public function getCiudad() {
+        return $this->ciudad;
+    }
+
+    public function getBarrio() {
+        return $this->barrio;
+    }
+
     public function insertarUsuario() {
 
         $parameters = array();
-        $parameters [':nome'] = $this->getNome();
+        $parameters [':nombre'] = $this->getNombre();
+        $parameters [':apellido'] = $this->getApellido();
         $parameters [':username'] = $this->getUsername();
         $parameters [':email'] = $this->getEmail();
-        $parameters [':senha'] = $this->getSenha();
+        $parameters [':contrasena'] = $this->getContrasena();
         $parameters [':tipo_usuario'] = $this->getTipoUsuario();
+        $parameters [':documento'] = $this->getDocumento();
+        $parameters [':edad'] = $this->getEdad();
+        $parameters [':telefono'] = $this->getTelefono();
+        $parameters [':direccion'] = $this->getDireccion();
+        $parameters [':ciudad'] = $this->getCiudad();
+        $parameters [':barrio'] = $this->getBarrio();
 
         $objUsuarioDao = new UsuarioDao();
 
@@ -106,11 +183,19 @@ class UsuarioModel {
     public function atualizarUsuario() {
 
         $parameters = array();
-        $parameters ['id'] = $this->getId();
-        $parameters [':nome'] = $this->getNome();
+        $parameters [':id'] = $this->getId();
+        $parameters [':nombre'] = $this->getNombre();
+        $parameters [':apellido'] = $this->getApellido();
         $parameters [':username'] = $this->getUsername();
         $parameters [':email'] = $this->getEmail();
-        $parameters [':senha'] = $this->getSenha();
+        $parameters [':contrasena'] = $this->getContrasena();
+        $parameters [':documento'] = $this->getDocumento();
+        $parameters [':edad'] = $this->getEdad();
+        $parameters [':telefono'] = $this->getTelefono();
+        $parameters [':direccion'] = $this->getDireccion();
+        $parameters [':ciudad'] = $this->getCiudad();
+        $parameters [':barrio'] = $this->getBarrio();
+
 
         $objUsuarioDao = new UsuarioDao();
 

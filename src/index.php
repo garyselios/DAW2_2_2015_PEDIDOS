@@ -49,10 +49,9 @@ if (isset($_GET['Controller']) && $_GET['Controller'] == 'LoginController') {
             
         case $_SESSION['usuario'][0]['tipo'] == 'USER':
 
-            if (isset($_GET['Controller']) && $_GET['Controller'] != 'UsuarioControler') {
+            if (isset($_GET['Controller']) && $_GET['Controller'] != 'UsuarioController') {
                 echo 'Usted no tiene permiso para entrar a este sitio <br>';
-                $controller = 'SiteController';
-                $action = 'index';
+                echo '<META http-equiv="refresh" content="3;URL=index.php?Controller=UsuarioController&Action=index">';
             }
 
             $controller = 'UsuarioController';
@@ -67,10 +66,9 @@ if (isset($_GET['Controller']) && $_GET['Controller'] == 'LoginController') {
             
         case $_SESSION['usuario'][0]['tipo'] == 'CLIENT':
 
-            if (isset($_GET['Controller']) && $_GET['Controller'] != 'SiteControler') {
+            if (isset($_GET['Controller']) && $_GET['Controller'] != 'SiteController') {
                 echo 'Usted no tiene permiso para entrar a este sitio <br>';
-                $controller = 'SiteController';
-                $action = 'index';
+                echo '<META http-equiv="refresh" content="3;URL=index.php?Controller=SiteController&Action=index">';
             }
 
             $controller = 'SiteController';

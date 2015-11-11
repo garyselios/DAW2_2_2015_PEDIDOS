@@ -1,18 +1,16 @@
 <?php
-class LoginController{   
+class LoginController extends LoginModel{   
     
     public function entrar(){
         
         if(isset($_POST['submit'])){
             
-            $objLoginModel = new LoginModel();
+            $this->setUsername($_POST['username']);
+            $this->setContrasena($_POST['contrasena']);
             
-            $objLoginModel->setUsername($_POST['username']);
-            $objLoginModel->setSenha($_POST['senha']);
-            
-            if($objLoginModel->logar()){
+            if($this->logar()){
                 
-                $_SESSION['usuario'] = $objLoginModel->logar();
+                $_SESSION['usuario'] = $this->logar();
                 
             }
             header('Location:index.php');
@@ -33,11 +31,9 @@ class LoginController{
 
         if (isset($_POST['submit'])) {
             
-            $objLoginModel = new LoginModel();
-
-            $objLoginModel->setEmail($_POST['email']);
+            $this->setEmail($_POST['email']);
             
-            $recuperar = $objLoginModel->recuperarSenha();
+            $recuperar = $this->recuperarContrasena();
             
             include 'Mailer/mail.php';
         }

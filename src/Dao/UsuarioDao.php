@@ -4,8 +4,8 @@ class UsuarioDao extends Dao {
 
     public function insertUsuario($parameters) {
 
-        $sqlCommand = "INSERT INTO usuario (nome,username,email,senha,tipo_usuario)"
-                . " VALUES (:nome,:username,:email,:senha,:tipo_usuario)";
+        $sqlCommand = "INSERT INTO usuario (nombre,apellido,username,email,contrasena,tipo_usuario,documento,edad,telefono,direccion,ciudad,barrio)"
+                . " VALUES (:nombre,:apellido,:username,:email,:contrasena,:tipo_usuario,:documento,:edad,:telefono,:direccion,:ciudad,:barrio)";
 
         return $this->executeCommand($sqlCommand, $parameters);
     }
@@ -20,7 +20,7 @@ class UsuarioDao extends Dao {
 
     public function selectAllUsuario() {
 
-        $sqlCommand = "SELECT tipo_usuario.nome AS tipo,usuario.* "
+        $sqlCommand = "SELECT tipo_usuario.nombre AS tipo,usuario.* "
                 . " FROM usuario "
                 . " LEFT JOIN tipo_usuario "
                 . " ON usuario.tipo_usuario = tipo_usuario.id "
@@ -40,7 +40,9 @@ class UsuarioDao extends Dao {
     public function updateUsuario($parameters) {
 
         $sqlCommand = "UPDATE usuario"
-                . " SET nome = :nome, username = :username, email = :email, senha = :senha,"
+                . " SET nombre = :nombre, apellido = :apellido, username = :username, email = :email,"
+                . " contrasena = :contrasena, documento = :documento, edad = :edad, telefono = :telefono,"
+                . " direccion = :direccion, ciudad = :ciudad, barrio = :barrio"
                 . " WHERE id = :id";
 
         return $this->executeCommand($sqlCommand, $parameters);
